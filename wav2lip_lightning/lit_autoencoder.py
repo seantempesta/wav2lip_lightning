@@ -44,6 +44,9 @@ class LitAutoEncoder(pl.LightningModule):
 
 
 def cli_main():
+    import sys
+    sys.argv = ['', '--resume_from_checkpoint', 'lightning_logs/version_0/checkpoints/epoch=288.ckpt']
+
     pl.seed_everything(1234)
 
     # ------------
@@ -70,6 +73,7 @@ def cli_main():
     # model
     # ------------
     model = LitAutoEncoder()
+    model = LitAutoEncoder.load_from_checkpoint('lightning_logs/version_0/checkpoints/epoch=290.ckpt')
 
     # ------------
     # training
@@ -84,5 +88,5 @@ def cli_main():
     print(result)
 
 
-if __name__ == '__main__':
+if __name__ == '__main_!':
     cli_main()
